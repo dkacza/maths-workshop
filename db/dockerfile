@@ -1,0 +1,7 @@
+FROM mysql:latest
+ENV MYSQL_ROOT_PASSWORD=Zaq12wsx
+
+COPY ./schema.sql /docker-entrypoint-initdb.d/
+COPY ./test-data.sql /opt/
+
+EXPOSE 3306

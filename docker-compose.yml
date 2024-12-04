@@ -1,0 +1,33 @@
+version: '3.7'
+services:
+  maths-workshop-client:
+    image: dkacza/maths-workshop-client-img:latest
+    ports:
+      - 3000:3000
+    networks:
+      - springboot-mysql-network
+  maths-workshop-api:
+    image: dkacza/maths-workshop-api-img:latest
+    ports:
+      - 8080:8080
+    depends_on:
+      maths-workshop-db:
+        condition: service_healthy
+    networks:
+      - springboot-mysql-network
+  maths-workshop-db:
+    image: dkacza/maths-workshop-db-img:latest
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=Zaq12wsx
+    networks:
+      - springboot-mysql-network
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      retries: 10
+      interval: 3s
+      timeout: 30s
+networks:
+  springboot-mysql-network:
+    name: springboot-mysql-network
