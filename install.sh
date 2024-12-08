@@ -1,5 +1,5 @@
 echo "Running Docker Compose..."
-docker-compose -p maths-workshop up -d
+docker compose -p maths-workshop up -d
 
 echo "Application is ready for production use."
 
