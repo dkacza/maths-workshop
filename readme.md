@@ -1,38 +1,21 @@
-# This is a repo for installer of maths-workshop app
+### This repository contains the installer and sample data for the maths-workshop app
 
-Use the provided `install.sh` script.
-The instructions below refer to creating images locally.
+[Front-end repository](https://github.com/dkacza/tutoring-app-client)
 
-## Step 0. Clear docker cache
+[Back-end repository](https://github.com/dkacza/tutoring-app-api)
 
-`docker builder prune --all`
+_Using this installer requires Docker installed_
 
-## Step 1. Build API image
+### Installation:
 
-Just to be sure delete the target folder.
+- For UNIX systems use the `install.sh` script.
+- For windows use `install.bat`.
 
-1. `mvn clean install -DskipTests`
-2. `docker build -t maths-workshop-api-img .`
+At the last step of the installation process, the script will ask, if the sample data should be inserted. Regardless of the answer the application will be ready to use under `localhost:3000` address.
 
-## Step 2. Build DB Image
+### Demo user credentials
 
-`docker build -t maths-workshop-db-img .`
+Demonstration mode administrator credentials:
 
-At first tables are created with admin user.
-
-## Step 3. Run Docker Compose
-
-`docker-compose up`
-
-**Aplication is ready for production use**
-
-Next steps apply for demonstration mode:
-
-## Step 4. Insert sample data
-
-`docker exec maths-workshop-maths-workshop-db-1  /bin/sh -c 'mysql -u root -pZaq12wsx </opt/test-data.sql'`
-
-## Step 5.
-
-Insert sample media
-`docker cp ./files/ maths-workshop-maths-workshop-api-1:/app/files/`
+- Login: `jan.adminowski@test.com`
+- Password: `Pass1234`
